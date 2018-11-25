@@ -1,8 +1,9 @@
 // create variables
-//I don't know if I need this, but I'll go ahead and make it: var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 //These words are just placeholders until the code works, then I will make the theme
 var possibleWords = ['picnic', 'television', 'car', 'couch', 'chicken', 'lunchbox', 'computer', 'superman', 'dresser', 'tofu']; //Place the possible words to be picked from in this array
-var guessedLetters = []; //Empty array ready for guessed letters
+var guessedLetter = ""; //Empty string ready for each guessed letter
+var correctLetters = []; //Empty list ready for correct letters
+var incorrectLetters = []; //Empty list ready for incorrect letters
 var guesses = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 
@@ -14,8 +15,15 @@ var wins = 0; //Sets number of wins to begin with
 word = possibleWords[Math.floor(Math.random() * 10)] //Replace 10 with the number of items in the possibleWords array 
 
 //Display the word as _ _ _ _... 
+    //find the length of word
+    //display "_" for each letter in word
 
 //As the user guesses the correct letters, display them
+    //Catch the user's guess as guessedLetter and convert to lowercase
+    //If guessedLetter in word:
+        //find index(es) of that letter in word
+        //Change "_" to that letter(s) in correct index in display 
+    //Else, add to  
 
 //Display the number of guesses remaining
 
