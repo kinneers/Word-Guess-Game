@@ -12,18 +12,26 @@ var wins = 0; //Sets number of wins to begin with
 //Display the number of wins (number of times the user guessed the word correctly)
 
 //Choose a random word from the possibleWords array
-word = possibleWords[Math.floor(Math.random() * 10)] //Replace 10 with the number of items in the possibleWords array 
+var word = possibleWords[Math.floor(Math.random() * possibleWords.length)] //Replace 10 with the number of items in the possibleWords array 
 
 //Display the word as _ _ _ _... 
+var displayLength = word.length;
+
     //find the length of word
     //display "_" for each letter in word
+
+    //USE SPANS!!!
 
 //As the user guesses the correct letters, display them
     //Catch the user's guess as guessedLetter and convert to lowercase
     //If guessedLetter in word:
         //find index(es) of that letter in word
-        //Change "_" to that letter(s) in correct index in display 
-    //Else, add to  
+        //Change "_" to that letter(s) in correct index in display
+        //decrement guesses 
+    //Else: 
+        //convert to uppercase
+        //add to incorrectLetters
+        //decrement guesses
 
 //Display the number of guesses remaining
 
