@@ -1,21 +1,31 @@
 // create variables
 //These words are just placeholders until the code works, then I will make the theme
-var possibleWords = ['picnic', 'television', 'car', 'couch', 'chicken', 'lunchbox', 'computer', 'superman', 'dresser', 'tofu']; //Place the possible words to be picked from in this array
+var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'couch', 'chicken', 'lunchbox', 'computer', 'superman', 'dresser', 'tofu'];
 var guessedLetter = ""; //Empty string ready for each guessed letter
 var correctLetters = []; //Empty list ready for correct letters
 var incorrectLetters = []; //Empty list ready for incorrect letters
 var guesses = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 
+//Choose random word from possibleWords array
+var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];
+
+//Display the word as _ _ _ _... 
+var displayLength = word.length;
+
+//Game begins upon keyup
+document.onkeyup = function(event) {
+    
+}
+console.log(displayLength);
 //Display "Press any key to begin the game"
 
 //Display the number of wins (number of times the user guessed the word correctly)
 
 //Choose a random word from the possibleWords array
-var word = possibleWords[Math.floor(Math.random() * possibleWords.length)] //Replace 10 with the number of items in the possibleWords array 
+ //Replace 10 with the number of items in the possibleWords array 
 
-//Display the word as _ _ _ _... 
-var displayLength = word.length;
+
 
     //find the length of word
     //display "_" for each letter in word
