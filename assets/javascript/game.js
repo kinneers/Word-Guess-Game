@@ -1,4 +1,4 @@
-var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'spaghetti with syrup', 'the sea of swirly, twirly gumdrops', 'Santa here? I know him!', 'The best way to spread Christmas cheer is singing loud for all to hear', 'treat every day like Christmas', "there's room for everyone on the nice list", 'Does someone need a hug?', "smiling's my favorite", 'call me elf one more time']; //Array of possible words/phrases
+var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'spaghetti with syrup', 'the sea of swirly, twirly gumdrops', 'Santa, here? I know him!', 'The best way to spread Christmas cheer is singing loud for all to hear', 'treat every day like Christmas', "there's room for everyone on the nice list", 'Does someone need a hug?', "smiling's my favorite", 'call me elf one more time']; //Array of possible words/phrases
 var answer = []; //Empty array to hold the correct answer
 var guessedLetter = []; //Empty array ready for each guessed letter
 var correctLetters = []; //Empty list ready for correct letters
@@ -15,14 +15,18 @@ var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Cho
 
 console.log(word); //for testing
 
+//Displays underscores for the missing letters
 for (var i = 0; i < word.length; i++) {
-    answer[i];
-  }
+    if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
+        answer[i] = "_";
+        }
+    else {
+        answer[i] = word[i];
+    }
+answer.join();
+}
 
-//Display the word as _ _ _ _... 
-var displayLength = word.length;
-
-console.log(answer[i]);
+console.log(answer.join(' '));
 
 //Display "Press any key to begin the game"
 
