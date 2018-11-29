@@ -1,23 +1,29 @@
-// create variables
-//These words are just placeholders until the code works, then I will make the theme
-var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'couch', 'chicken', 'lunchbox', 'computer', 'superman', 'dresser', 'tofu'];
-var guessedLetter = ""; //Empty string ready for each guessed letter
+var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'spaghetti with syrup', 'the sea of swirly, twirly gumdrops', 'Santa here? I know him!', 'The best way to spread Christmas cheer is singing loud for all to hear', 'treat every day like Christmas', "there's room for everyone on the nice list", 'Does someone need a hug?', "smiling's my favorite", 'call me elf one more time']; //Array of possible words/phrases
+var answer = []; //Empty array to hold the correct answer
+var guessedLetter = []; //Empty array ready for each guessed letter
 var correctLetters = []; //Empty list ready for correct letters
 var incorrectLetters = []; //Empty list ready for incorrect letters
 var guesses = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 
-//Choose random word from possibleWords array
-var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];
-
-//Display the word as _ _ _ _... 
-var displayLength = word.length;
 
 //Game begins upon keyup
 document.onkeyup = function(event) {
     
 }
-console.log(displayLength);
+var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Chooses random word from possibleWords array
+
+console.log(word); //for testing
+
+for (var i = 0; i < word.length; i++) {
+    answer[i];
+  }
+
+//Display the word as _ _ _ _... 
+var displayLength = word.length;
+
+console.log(answer[i]);
+
 //Display "Press any key to begin the game"
 
 //Display the number of wins (number of times the user guessed the word correctly)
@@ -57,4 +63,3 @@ console.log(displayLength);
     //Don't forget to place your global variables and functions above your object.
     //Remember: global variables, then objects, then calls.
 
-console.log(word); //for testing
