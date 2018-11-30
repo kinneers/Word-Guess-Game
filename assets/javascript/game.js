@@ -1,10 +1,11 @@
-var possibleWords = ['Buddy the Elf', 'Christmas cheer', 'snowball fight', 'spaghetti with syrup', 'the sea of swirly, twirly gumdrops', 'Santa, here? I know him!', 'The best way to spread Christmas cheer is singing loud for all to hear', 'treat every day like Christmas', "there's room for everyone on the nice list", 'Does someone need a hug?', "smiling's my favorite", 'call me elf one more time', "I'm in love and I don't care who knows it!", "Buddy the Elf, what's your favorite color?"]; //Array of possible words/phrases
+var possibleWords = ['Christmas tree', 'The North Pole', 'snowball fight', 'gingerbread house']; //Array of possible words/phrases
 var answer = []; //Empty array to hold the correct answer
 var guess = []; //Empty array ready for each guessed letter
 var correctLetters = []; //Empty list ready for correct letters
 var incorrectLetters = []; //Empty list ready for incorrect letters
 var guesses = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
+var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
 
 //Game begins upon keyup
 document.onkeyup = function(event) {
@@ -22,15 +23,27 @@ for (var i = 0; i < word.length; i++) {
     else {
         answer[i] = word[i];
     }
-    var displayAnswer = answer.join(' ');
+    
 
+    //Collect user guess
     document.onkeyup = function(event) {
-        guess = event.key;
-        console.log(guess);//Remove me once code works
-    ///Figure out if/else statement that makes sure the guess is a letter!!!!!!
+        guess = event.key.toLowerCase();
+        //Verifies valid input (letter properly converted to lowercase string)
+        if (letterCheck.test(guess.toString()) === true) {
+            for (var i = 0; i < word.length; i++) {
+                if (word.toLowerCase()[i] === guess.toString().toLowerCase()) {
+                    console.log("It works!");
+                }
+                else {
+                    incorrectLetters.push(guess).toString().toUpperCase();
+                    console.log(incorrectLetters); //I want it to stop after just adding it once, though...
+                }
+            }
+        }
     }
 }
-
+var displayAnswer = answer.join(' ');
+    
 console.log(word);
 console.log(displayAnswer);
 
