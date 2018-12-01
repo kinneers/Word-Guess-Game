@@ -12,6 +12,10 @@ var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];
 //Game begins upon keyup
 document.onkeyup = function(event) {
     //The code to run the game will go here... I think...
+    //hide the text instructing user to press key to begin
+    //While window is open?
+        //call game function
+        //if statement for winning to increment the wins
 }
 
 //Displays underscores for the missing letters
@@ -23,6 +27,7 @@ for (var i = 0; i < word.length; i++) {
         answer[i] = word[i];
     }
 }
+var displayAnswer = answer.join(' ');
 
 //Collects user guess, adds it to the correct or incorrect letter array, decrements the guesses if incorrect
 document.onkeyup = function(event) {
@@ -45,22 +50,21 @@ document.onkeyup = function(event) {
             console.log(correctLetters);
         }
         else if (incorrectGuess) {
-            incorrectLetters.push(stringGuess.toUpperCase());
-            console.log(incorrectLetters);
+            incorrectLetters.push(" " + stringGuess.toUpperCase());
             guessesLeft--;
+            console.log(incorrectLetters);
             }
         else {
             console.log("You may only choose a letter once.");
         }
-    guessCountText.textContent = "Guesses: " + guessesLeft;  
+    guessCountText.textContent = "Guesses: " + guessesLeft;
+    guessedLettersText.textContent = "Incorrect Guesses: " + incorrectLetters;
     }
     else {
         console.log("Not a valid input");
     }
 }
 
-
-var displayAnswer = answer.join(' ');
   
 console.log(word);
 console.log(displayAnswer);
@@ -71,26 +75,12 @@ winCountText.textContent = "Wins: " + wins;
 
 //Display the number of wins (number of times the user guessed the word correctly)
 
-/*
-Regex for all upper and lowercase letters- the plus sign means it cannot be empty
-
-*/
-    //USE SPANS!!!
-
 //As the user guesses the correct letters, display them
     //Catch the user's guess as guessedLetter and convert to lowercase
     //If guessedLetter in word:
         //find index(es) of that letter in word
         //Change "_" to that letter(s) in correct index in display
         //decrement guesses 
-    //Else: 
-        //convert to uppercase
-        //add to incorrectLetters
-        //decrement guesses
-
-//Display the number of guesses remaining
-
-//Display Letters already guessed, displayed like L Z Y X
 
 //After the user wins/loses the game should automatically choose another word and make the user play it.
 
