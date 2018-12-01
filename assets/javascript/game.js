@@ -57,6 +57,9 @@ var displayAnswer = answer.join(' ');
 console.log(word);
 console.log(displayAnswer);
 
+winCountText.textContent = "Wins: " + wins;
+guessCountText.textContent = "Guesses: " + guesses;
+
 //Display the number of wins (number of times the user guessed the word correctly)
 
 /*
@@ -75,45 +78,6 @@ Regex for all upper and lowercase letters- the plus sign means it cannot be empt
         //convert to uppercase
         //add to incorrectLetters
         //decrement guesses
-
-        
-
-    /*
-    if (guess.matches^[a-z]+$) {
-        console.log(guess);
-    }
-    else {
-        console.log('error');
-    }
-}
-*/
-
-/*
-    var compChoice = choices[Math.floor(Math.random() * choices.length)];
-    if ((userChoice === 'r') || (userChoice === 'p') || (userChoice === 's')) {
-        if ((compChoice === 'r' && userChoice === 'r') || (compChoice === 's' && userChoice === 's') || (compChoice === 'p' && userChoice === 'p')) {
-            ties++;
-            console.log("Ties: " + ties);
-        }
-        else if ((compChoice === 'r' && userChoice === 'p') || (compChoice === 'p' && userChoice === 's') || (compChoice === 's' && userChoice === 'r')) {
-            wins++;
-            console.log("Wins: " + wins);
-        }
-        else if ((compChoice === 'r' && userChoice === 's') || (compChoice === 'p' && userChoice === 'r') || (compChoice === 's' && userChoice === 'p')) {
-            losses++;
-            console.log("Losses: " + losses);
-        }
-        else {
-            console.log('error');
-        }
-    }
-    userChoiceText.textContent = "You chose: " + userChoice;
-    computerChoiceText.textContent = "The computer chose: " + compChoice;
-    winsText.textContent = "Wins: " + wins;
-    lossesText.textContent = "Losses: " + losses;
-    tiesText.textContent = "Ties: " + ties;
-};
-*/
 
 //Display the number of guesses remaining
 
