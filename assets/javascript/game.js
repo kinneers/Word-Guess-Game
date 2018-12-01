@@ -3,7 +3,7 @@ var answer = []; //Empty array to hold the correct answer
 var guess = []; //Empty array ready for each guessed letter
 var correctLetters = []; //Empty list ready for correct letters
 var incorrectLetters = []; //Empty list ready for incorrect letters
-var guesses = 10; //Number of available guesses at the beginning of the game
+var guessesLeft = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
 //Chooses random word from possibleWords array
@@ -45,7 +45,9 @@ for (var i = 0; i < word.length; i++) {
             else {
                 incorrectLetters.push(stringGuess.toUpperCase());
                 console.log(incorrectLetters);
+                guessesLeft--;
             }
+            guessCountText.textContent = "Guesses: " + guessesLeft;
         }
         else {
             console.log("Not a valid input");
@@ -58,7 +60,7 @@ console.log(word);
 console.log(displayAnswer);
 
 winCountText.textContent = "Wins: " + wins;
-guessCountText.textContent = "Guesses: " + guesses;
+
 
 //Display the number of wins (number of times the user guessed the word correctly)
 
