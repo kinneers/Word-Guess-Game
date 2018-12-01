@@ -14,8 +14,6 @@ document.onkeyup = function(event) {
     //The code to run the game will go here... I think...
 }
 
-
-
 //Displays underscores for the missing letters
 for (var i = 0; i < word.length; i++) {
     if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
@@ -25,33 +23,32 @@ for (var i = 0; i < word.length; i++) {
         answer[i] = word[i];
     }
 
-    
     //Collect user guess
     document.onkeyup = function(event) {
         guess = event.key.toLowerCase();
+        stringGuess = guess.toString();
         //Verifies valid input (letter properly converted to lowercase string)
-        if (letterCheck.test(guess.toString()) === true) {
-            //This is where the code gets messy and needs work!!!!!
+        if (letterCheck.test(stringGuess) === true) {
+            var correctGuess = false;
+            if ((correctLetters.indexOf(stringGuess) > -1) || (incorrectLetters.indexOf(stringGuess) > -1)) {
+            }
             for (var i = 0; i < word.length; i++) {
-                if (word.toLowerCase()[i] === guess.toString().toLowerCase()) {
+                if (word.toLowerCase()[i] === stringGuess) {
                     console.log("It works!");
-                    if (correctLetters.indexOf(i) > -1) {
-                        correctLetters.push(guess).toString().toUpperCase();
-                    }
-                    else {
-                        console.log("This letter is in the correctLetters array");
-                    }
-                }
-                else {
-                    if (incorrectLetters.indexOf(i) > -1) {
-                        incorrectLetters.push(guess).toString().toUpperCase();                        
-                    }
-                    else {
-                        console.log("This letter is in the incorrectLetters array");
-                    }
-                    
+                    correctGuess = true;       
                 }
             }
+            if (correctGuess) {
+                correctLetters.push(stringGuess);
+                console.log(correctLetters);
+            }
+            else {
+                incorrectLetters.push(stringGuess.toUpperCase());
+                console.log(incorrectLetters);
+            }
+        }
+        else {
+            console.log("Not a valid input");
         }
     }
 }
