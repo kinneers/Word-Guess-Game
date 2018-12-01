@@ -22,44 +22,51 @@ for (var i = 0; i < word.length; i++) {
     else {
         answer[i] = word[i];
     }
+}
 
-    //Collect user guess
-    document.onkeyup = function(event) {
-        guess = event.key.toLowerCase();
-        stringGuess = guess.toString();
-        //Verifies valid input (letter properly converted to lowercase string)
-        if (letterCheck.test(stringGuess) === true) {
-            var correctGuess = false;
-            if ((correctLetters.indexOf(stringGuess) > -1) || (incorrectLetters.indexOf(stringGuess) > -1)) {
+//Collects user guess, adds it to the correct or incorrect letter array, decrements the guesses if incorrect
+document.onkeyup = function(event) {
+    guess = event.key.toLowerCase();
+    stringGuess = guess.toString();
+    //Verifies valid input (letter properly converted to lowercase string)
+    if ((letterCheck.test(stringGuess) === true) && ((correctLetters.indexOf(stringGuess) === -1) && (incorrectLetters.indexOf(stringGuess) === -1))) {
+        var correctGuess = false;
+        var incorrectGuess = false;
+        for (var i = 0; i < word.length; i++) {
+            if (word.toLowerCase()[i] === stringGuess) {
+                correctGuess = true;       
             }
-            for (var i = 0; i < word.length; i++) {
-                if (word.toLowerCase()[i] === stringGuess) {
-                    console.log("It works!");
-                    correctGuess = true;       
-                }
+            if (word.toLowerCase()[i] !== stringGuess) {
+                incorrectGuess = true;
             }
-            if (correctGuess) {
-                correctLetters.push(stringGuess);
-                console.log(correctLetters);
-            }
-            else {
-                incorrectLetters.push(stringGuess.toUpperCase());
-                console.log(incorrectLetters);
-                guessesLeft--;
-            }
-            guessCountText.textContent = "Guesses: " + guessesLeft;
         }
+        if (correctGuess) {
+            correctLetters.push(stringGuess);
+            console.log(correctLetters);
+        }
+        else if (incorrectGuess) {
+            incorrectLetters.push(stringGuess.toUpperCase());
+            console.log(incorrectLetters);
+            guessesLeft--;
+            }
         else {
-            console.log("Not a valid input");
+            console.log("You may only choose a letter once.");
         }
+    guessCountText.textContent = "Guesses: " + guessesLeft;  
+    }
+    else {
+        console.log("Not a valid input");
     }
 }
+
+
 var displayAnswer = answer.join(' ');
-    
+  
 console.log(word);
 console.log(displayAnswer);
 
 winCountText.textContent = "Wins: " + wins;
+
 
 
 //Display the number of wins (number of times the user guessed the word correctly)
