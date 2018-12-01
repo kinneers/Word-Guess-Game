@@ -1,31 +1,38 @@
-var possibleWords = ['Christmas tree', 'The North Pole', 'snowball fight', 'gingerbread house']; //Array of possible words/phrases
-var answer = []; //Empty array to hold the correct answer
-var guess = []; //Empty array ready for each guessed letter
-var correctLetters = []; //Empty list ready for correct letters
-var incorrectLetters = []; //Empty list ready for incorrect letters
-var guesses = 10; //Number of available guesses at the beginning of the game
-var wins = 0; //Sets number of wins to begin with
-var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
-//Chooses random word from possibleWords array
-var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];
+var possibleWords = ['Christmas tree', 'The North Pole', 'snowball fight', 'gingerbread house'], //Array of possible words/phrases
 
+//Object containing game
+var game = {
+    answer : [], //Empty array to hold the correct answer
+    guess : [], //Empty array ready for each guessed letter
+    correctLetters : [], //Empty list ready for correct letters
+    incorrectLetters : [], //Empty list ready for incorrect letters
+    word : possibleWords[Math.floor(Math.random() * possibleWords.length)], //Chooses a random word from the possibleWords array
+    guesses : 10, //Number of available guesses at the beginning of the game
+    wins : 0, //Sets number of wins to begin with
+    letterCheck : /^[a-z]$/, //Regex to test for valid letter input
+    
+    displayAnswer : function() {
+        for (var i = 0; i < word.length; i++) {
+            if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
+                answer[i] = "_";
+            }
+            else {
+                answer[i] = word[i];
+            }
+        }
+    }
+};
+
+
+/*
 //Game begins upon keyup
 document.onkeyup = function(event) {
     //The code to run the game will go here... I think...
 }
 
-
-
 //Displays underscores for the missing letters
-for (var i = 0; i < word.length; i++) {
-    if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
-        answer[i] = "_";
-        }
-    else {
-        answer[i] = word[i];
-    }
 
-    
+
     //Collect user guess
     document.onkeyup = function(event) {
         guess = event.key.toLowerCase();
@@ -54,11 +61,12 @@ for (var i = 0; i < word.length; i++) {
             }
         }
     }
-}
+
 var displayAnswer = answer.join(' ');
     
 console.log(word);
 console.log(displayAnswer);
+*/
 
 //Display the number of wins (number of times the user guessed the word correctly)
 
