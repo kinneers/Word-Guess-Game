@@ -30,42 +30,8 @@ document.onkeyup = function(event) {
     //The code to run the game will go here... I think...
 }
 
-//Displays underscores for the missing letters
+//Displays underscores for the missing letters 
 
-
-    //Collect user guess
-    document.onkeyup = function(event) {
-        guess = event.key.toLowerCase();
-        //Verifies valid input (letter properly converted to lowercase string)
-        if (letterCheck.test(guess.toString()) === true) {
-            //This is where the code gets messy and needs work!!!!!
-            for (var i = 0; i < word.length; i++) {
-                if (word.toLowerCase()[i] === guess.toString().toLowerCase()) {
-                    console.log("It works!");
-                    if (correctLetters.indexOf(i) > -1) {
-                        correctLetters.push(guess).toString().toUpperCase();
-                    }
-                    else {
-                        console.log("This letter is in the correctLetters array");
-                    }
-                }
-                else {
-                    if (incorrectLetters.indexOf(i) > -1) {
-                        incorrectLetters.push(guess).toString().toUpperCase();                        
-                    }
-                    else {
-                        console.log("This letter is in the incorrectLetters array");
-                    }
-                    
-                }
-            }
-        }
-    }
-
-var displayAnswer = answer.join(' ');
-    
-console.log(word);
-console.log(displayAnswer);
 */
 
 //Display the number of wins (number of times the user guessed the word correctly)

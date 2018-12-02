@@ -23,6 +23,7 @@ for (var i = 0; i < word.length; i++) {
     else {
         answer[i] = word[i];
     }
+    console.log(typeof answer); //So this might be my problem- answer is not an array- it is an object...
 }
 
 //Collects user guess, adds it to the correct or incorrect letter array, decrements the guesses if incorrect
@@ -43,7 +44,7 @@ document.onkeydown = function(event) {
         }
         if (correctGuess) {
             for (var j = 0; j < word.length; j++) {
-                if (word[j] === stringGuess) {
+                if (word.toLowerCase()[j] === stringGuess) {
                     answer[j] = stringGuess;
                 }
             }
@@ -59,7 +60,7 @@ document.onkeydown = function(event) {
         else {
             console.log("You may only choose a letter once.");
         }
-    guessCountText.textContent = "Guesses: " + guessesLeft;
+    guessCountText.textContent = "Guesses Remaining: " + guessesLeft;
     guessedLettersText.textContent = "Incorrect Guesses: " + incorrectLetters;
     }
     else {
@@ -72,15 +73,20 @@ var displayAnswer = answer.join(); //When I try adding a space between with .joi
 answerText.textContent = displayAnswer;
 
 }
+  
+console.log(word);
 
     //Not sure yet how to make it repeat... while window is open, maybe?
         //call game function
         //if statement for winning to increment the wins
-  
-console.log(word);
-
-
-
+function reset() {
+    guessesLeft = 10;
+    word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Chooses random word from possibleWords array
+    incorrectLetters = [];
+    correctLetters = [];
+    answer = [];
+    guess = [];
+}
 //Display the number of wins (number of times the user guessed the word correctly)
 
     //USE SPANS!!!
