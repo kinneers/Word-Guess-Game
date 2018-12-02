@@ -6,14 +6,13 @@ var incorrectLetters = []; //Empty list ready for incorrect letters
 var guessesLeft = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
-//Chooses random word from possibleWords array
-var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];
+var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Chooses random word from possibleWords array
 
 //Game begins upon keyup
 var el = document.getElementById("start");
 document.onkeyup = function(event) {
-    event.stopPropagation();
-    el.textContent = ("");
+    event.stopPropagation(); //Makes the start game keystroke not also be the first guess
+    el.textContent = (""); //Removes the "Press any key to start"
     //Displays underscores for the missing letters
 for (var i = 0; i < word.length; i++) {
     if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
@@ -23,7 +22,6 @@ for (var i = 0; i < word.length; i++) {
         answer[i] = word[i];
     }
 }
-var displayAnswer = answer.join(' ');
 
 //Collects user guess, adds it to the correct or incorrect letter array, decrements the guesses if incorrect
 document.onkeydown = function(event) {
@@ -60,24 +58,19 @@ document.onkeydown = function(event) {
         console.log("Not a valid input");
     }
 }
+
+var displayAnswer = answer.join(); //When I try adding a space between with .join(' ') it doesn't preserve space that should remain
+answerText.textContent = displayAnswer;
+
 }
 
-    //The code to run the game will go here... I think...
-    //hide the text instructing user to press key to begin
-    //While window is open?
+    //Not sure yet how to make it repeat... while window is open, maybe?
         //call game function
         //if statement for winning to increment the wins
-
-
-
-
   
 console.log(word);
 
-
 winCountText.textContent = "Wins: " + wins;
-
-
 
 //Display the number of wins (number of times the user guessed the word correctly)
 
