@@ -14,7 +14,7 @@ document.onkeyup = function(event) {
     event.stopPropagation(); //Makes the start game keystroke not also be the first guess
     el.textContent = (""); //Removes the "Press any key to start"
     winCountText.textContent = "Wins: " + wins; //Displays number of wins
-    guessCountText.textContent = "Guesses: " + guessesLeft; //Displays number of guesses remaining
+    guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
     //Displays underscores for the missing letters
 for (var i = 0; i < word.length; i++) {
     if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
@@ -42,9 +42,14 @@ document.onkeydown = function(event) {
             }
         }
         if (correctGuess) {
+            for (var j = 0; j < word.length; j++) {
+                if (word[j] === stringGuess) {
+                    answer[j] = stringGuess;
+                }
+            }
             correctLetters.push(stringGuess);
             console.log(correctLetters);
-            console.log(answer); 
+            console.log(answer);  
         }
         else if (incorrectGuess) {
             incorrectLetters.push(" " + stringGuess.toUpperCase());
