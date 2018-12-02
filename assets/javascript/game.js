@@ -33,7 +33,7 @@ document.onkeydown = function(event) {
         var incorrectGuess = false;
         for (var i = 0; i < word.length; i++) {
             if (word.toLowerCase()[i] === stringGuess) {
-                correctGuess = true;       
+                correctGuess = true;  
             }
             if (word.toLowerCase()[i] !== stringGuess) {
                 incorrectGuess = true;
@@ -42,6 +42,7 @@ document.onkeydown = function(event) {
         if (correctGuess) {
             correctLetters.push(stringGuess);
             console.log(correctLetters);
+            console.log(answer);  
         }
         else if (incorrectGuess) {
             incorrectLetters.push(" " + stringGuess.toUpperCase());
@@ -57,6 +58,7 @@ document.onkeydown = function(event) {
     else {
         console.log("Not a valid input");
     }
+    //check for win/loss
 }
 
 var displayAnswer = answer.join(); //When I try adding a space between with .join(' ') it doesn't preserve space that should remain
