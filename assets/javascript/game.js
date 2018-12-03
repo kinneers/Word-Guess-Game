@@ -1,92 +1,69 @@
-var possibleWords = ['Christmas tree', 'The North Pole', 'snowball fight', 'gingerbread house']; //Array of possible words/phrases
-var answer = []; //Empty array to hold the correct answer
-var guess = []; //Empty array ready for each guessed letter
-var correctLetters = []; //Empty list ready for correct letters
-var incorrectLetters = []; //Empty list ready for incorrect letters
+var possibleWords = ['Christmasc tree!', 'The North Pole!', 'snowball fight!', 'gingerbread house!']; //Array of possible words/phrases
+var currentWord = ""; //variable to hold the current word/phrase as a string
+var guess = ""; //string ready to hold current guessed letter
+var display = ""; //String ready to display the game board on the page
+var displayWord = []; //Empty array that will hold the letter at each index of the currently selected word
+var guessedLetters =[]; //Will hold user guessed letters
+var correctLetters = []; //Array for correctly guessed letters
 var guessesLeft = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
-var word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Chooses random word from possibleWords array
 
-//Game begins upon keyup
-var el = document.getElementById("start");
+//Begins the game setup with a keyup
 document.onkeyup = function(event) {
-    event.stopPropagation(); //Makes the start game keystroke not also be the first guess
+    currentWord = possibleWords[Math.floor(Math.random() * possibleWords.length)]; //Chooses random word from possibleWords array
+    console.log(currentWord);
+    var el = document.getElementById("start");
     el.textContent = (""); //Removes the "Press any key to start"
     winCountText.textContent = "Wins: " + wins; //Displays number of wins
     guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
-    //Displays underscores for the missing letters
-for (var i = 0; i < word.length; i++) {
-    if ((word[i] !== "'") && (word[i] !== " ") && (word[i] !== "!") && (word[i] !== "?") && (word[i] !== ",")) {
-        answer[i] = "_";
+    
+    for (var i = 0; i < currentWord.length; i++) {
+        displayWord.push(currentWord.charAt(i)); //pushes the currently selected word/phrase into an empty array
+        if (letterCheck.test(currentWord.charAt(i).toLowerCase())) { //Uses the regex to check if the character in the current word at the given index is a letter (returns boolean)
+            display = display.concat("_"); //If a letter, replaces it with '_'
         }
-    else {
-        answer[i] = word[i];
-    }
-    console.log(typeof answer); //So this might be my problem- answer is not an array- it is an object...
-}
-
-//Collects user guess, adds it to the correct or incorrect letter array, decrements the guesses if incorrect
-document.onkeydown = function(event) {
-    guess = event.key.toLowerCase();
-    stringGuess = guess.toString();
-    //Verifies valid input (letter properly converted to lowercase string)
-    if ((letterCheck.test(stringGuess) === true) && ((correctLetters.indexOf(stringGuess) === -1) && (incorrectLetters.indexOf(stringGuess) === -1))) {
-        var correctGuess = false;
-        var incorrectGuess = false;
-        for (var i = 0; i < word.length; i++) {
-            if (word.toLowerCase()[i] === stringGuess) {
-                correctGuess = true;  
-            }
-            if (word.toLowerCase()[i] !== stringGuess) {
-                incorrectGuess = true;
-            }
-        }
-        if (correctGuess) {
-            for (var j = 0; j < word.length; j++) {
-                if (word.toLowerCase()[j] === stringGuess) {
-                    answer[j] = stringGuess;
-                }
-            }
-            correctLetters.push(stringGuess);
-            console.log(correctLetters);
-            console.log(answer);  
-        }
-        else if (incorrectGuess) {
-            incorrectLetters.push(" " + stringGuess.toUpperCase());
-            guessesLeft--;
-            console.log(incorrectLetters);
-            }
         else {
-            console.log("You may only choose a letter once.");
+            display = display.concat(currentWord.charAt(i)); //Otherwise keeps the non-letter character in place
         }
-    guessCountText.textContent = "Guesses Remaining: " + guessesLeft;
-    guessedLettersText.textContent = "Incorrect Guesses: " + incorrectLetters;
     }
-    else {
-        console.log("Not a valid input");
+
+    answerText.textContent = display; //Displays the game board on the page
+
+    document.onkeyup = function(event) {
+        guess = event.key;  //Gathers the user's chosen letter
+        guess = guess.toLowerCase(); //Converts the guess to lowercase if it is not
+
+        if (letterCheck.test(guess)) { //Checks that the guess is a letter, returns boolean
+            if ((guessedLetters.indexOf(guess.toUpperCase()) > -1) && (displayWord.indexOf(guess) === -1) && (displayWord.indexOf(guess.toUpperCase()) === -1)) { //Logic: guess is already in incorrectly guessed array and is not in the display word (correct letters) array
+                console.log("You have already guessed this letter."); //Future idea- play a whah-wha sound or a beat
+            }
+            else if ((guessedLetters.indexOf(guess.toUpperCase()) === -1) && (displayWord.indexOf(guess) === -1) && (displayWord.indexOf(guess.toUpperCase()) === -1)) { //Logic: the guess has not already been guessed and is not in the display word (correct letters) array 
+                guessedLetters.push(guess.toUpperCase()); //Adds the incorrect letter to the guessedLetters array as an uppercase letter
+                guessesLeft--; //Decrements the number of guesses
+                guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Updates the guesses left on the page
+                //There might be a way to add a space into the guessedLetters array (use concat or maybe join)- but I'll try this once everthing else is working
+                guessedLettersText.textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
+            }
+            else { //By process of elimination, this must be a correct letter
+                for (var j = 0; j < currentWord.length; j++) { //Begins a loop that will write the correct guess into the display string
+                    if (currentWord.toLowerCase()[j] === guess) { //Finds the index on each loop of the correct guess
+                        display = display.substr(0,j) + currentWord[j] + display.substr(j+1); //Logic: Splits the current display into two substrings, one starting from index 0 and going length j (so ending just before the correctly guessed letter); one starting at j+1, which is the index just after j; and using the currentWord[j] to update the correctly guessed letter in order to preserve original capitalization choice 
+                    }
+                }
+                answerText.textContent = display; //Displays the game board on the page
+            }
+        }
+        else {
+            console.log("Not a valid input. Choose a letter."); //Logs message in console that non-letter was selected
+        }
     }
-    //check for win/loss
 }
-
-var displayAnswer = answer.join(); //When I try adding a space between with .join(' ') it doesn't preserve space that should remain
-answerText.textContent = displayAnswer;
-
-}
-  
-console.log(word);
 
     //Not sure yet how to make it repeat... while window is open, maybe?
         //call game function
         //if statement for winning to increment the wins
-function reset() {
-    guessesLeft = 10;
-    word = possibleWords[Math.floor(Math.random() * possibleWords.length)];//Chooses random word from possibleWords array
-    incorrectLetters = [];
-    correctLetters = [];
-    answer = [];
-    guess = [];
-}
+
 //Display the number of wins (number of times the user guessed the word correctly)
 
     //USE SPANS!!!
