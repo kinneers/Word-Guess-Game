@@ -19,7 +19,6 @@ body {
 
 h1 {
     font-size: 50px;
-    padding: 2rem;
 }
 
 h2 {
@@ -59,14 +58,89 @@ a:focus {
 }
 
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1400px) {
+    .container {
+        margin-top: 40px;
+        max-width: 680px;
+    }
+    h1 {
+        font-size: 40px;
+        padding: 1rem;
+    }
+    
+    h2 {
+        font-size: 50px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    #answerText {
+        font-size: 50px;
+        letter-spacing: 1rem;
+    }
+    
+    footer {
+        font-size: 16px;
+        padding: 3rem;
+    }
+}
 
+@media screen and (max-width: 980px) {
+    .container {
+        margin-top: 120px;
+        max-width: 490px;
+    }
+    h1 {
+        font-size: 30px;
+        padding: 1rem;
+    }
+    
+    h2 {
+        font-size: 40px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    #answerText {
+        font-size: 40px;
+        letter-spacing: 1rem;
+    }
+    
+    footer {
+        font-size: 16px;
+        padding: 3rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
-
-}
-
-@media screen and (max-width: 640px) {
-
+    .container {
+        margin-top: 120px;
+        max-width: 470px;
+    }
+    h1 {
+        font-size: 30px;
+        padding: 1rem;
+    }
+    
+    h2 {
+        font-size: 40px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    #answerText {
+        font-size: 40px;
+        letter-spacing: 1rem;
+    }
+    
+    footer {
+        font-size: 16px;
+        padding: 3rem;
+    }
 }
