@@ -3,7 +3,7 @@ var currentWord = ""; //variable to hold the current word/phrase as a string
 var guess = ""; //string ready to hold current guessed letter
 var display = ""; //String ready to display the game board on the page
 var displayWord = []; //Empty array that will hold the letter at each index of the currently selected word
-var guessedLetters =[]; //Will hold user guessed letters
+var guessedLetters = []; //Will hold user guessed letters
 var guessesLeft = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
@@ -15,7 +15,7 @@ document.onkeyup = function(event) {
     el.textContent = (""); //Removes the "Press any key to start"
     winCountText.textContent = "Wins: " + wins; //Displays number of wins
     guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
-    
+
     for (var i = 0; i < currentWord.length; i++) {
         displayWord.push(currentWord.charAt(i)); //pushes the currently selected word/phrase into an empty array
         if (letterCheck.test(currentWord.charAt(i).toLowerCase())) { //Uses the regex to check if the character in the current word at the given index is a letter (returns boolean)
