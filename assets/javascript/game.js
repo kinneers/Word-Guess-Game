@@ -67,7 +67,6 @@ document.onkeyup = function(event) {
             wins++; //Increments the number of wins
             winCountText.textContent = "Wins: " + wins; //Displays number of wins
             document.getElementById("soundWin").play(); //Plays jingle bells ringing
-
         }
 
         //User Loses
