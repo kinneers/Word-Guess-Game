@@ -6,6 +6,7 @@ var displayWord = []; //Empty array that will hold the letter at each index of t
 var guessedLetters = []; //Will hold user guessed letters
 var guessesLeft = 10; //Number of available guesses at the beginning of the game
 var wins = 0; //Sets number of wins to begin with
+var losses = 0; //Sets number of losses to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
 
 //Begins the game setup with a keyup
@@ -14,6 +15,7 @@ document.onkeyup = function(event) {
     var el = document.getElementById("start");
     el.textContent = (""); //Removes the "Press any key to start"
     winCountText.textContent = "Wins: " + wins; //Displays number of wins
+    lossCountText.textContent = "Losses: " + losses; //Displays number of losses
     guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
 
     for (var i = 0; i < currentWord.length; i++) {
@@ -71,7 +73,8 @@ document.onkeyup = function(event) {
 
         //User Loses
         if (guessesLeft === 0) {
-            console.log("You lost");
+            losses++;
+            lossCountText.textContent = "Losses: " + losses; //Displays number of losses
             document.getElementById("soundLose").play(); //Plays snowball splat audio
         }
 
