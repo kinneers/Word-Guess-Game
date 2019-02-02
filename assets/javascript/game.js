@@ -1,3 +1,10 @@
+/*
+Developer: Sarah Kinneer
+Title: Word Guess Game
+Description: Vanilla JavaScript Hangman Game
+Date: November/December 2018
+*/
+
 var possibleWords = ['nutcracker', 'Christmas trees', 'The North Pole', 'snowball fight', 'gingerbread house', 'winter wonderland', 'candy canes', 'stockings hung by the chimney', 'chestnuts roasting', 'St. Nicholas', 'Santa Claus is coming to town!', 'Rudolph', 'eight tiny reindeer', 'up on the housetop', "elves in Santa's workshop", 'ornaments', 'figgy pudding', 'coal in your stocking', 'presents under the tree', 'sleigh rides', 'White Christmas', 'kissing under the mistletoe', 'Silent Night', 'All I Want for Christmas is My Two Front Teeth', 'Grandma Got Run Over by a Reindeer']; //Array of possible words/phrases
 var currentWord = ""; //variable to hold the current word/phrase as a string
 var guess = ""; //string ready to hold current guessed letter
@@ -39,7 +46,6 @@ document.onkeyup = function(event) {
                 console.log("You have already guessed this letter."); //This incorrect letter has been guessed
                 document.getElementById("soundLose").play(); //Plays snowball splat audio
             }
-
             else if ((guessedLetters.indexOf(guess.toUpperCase()) === -1) && (displayWord.indexOf(guess) === -1) && (displayWord.indexOf(guess.toUpperCase()) === -1)) { //Logic: the guess has not already been guessed and is not in the display word (correct letters) array 
                 guessedLetters.push(guess.toUpperCase()); //Adds the incorrect letter to the guessedLetters array as an uppercase letter
                 guessesLeft--; //Decrements the number of guesses
@@ -48,7 +54,6 @@ document.onkeyup = function(event) {
                 guessedLettersText.textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
                 document.getElementById("soundLose").play(); //Plays snowball splat audio
             }
-
             else { //By process of elimination, this must be a correct letter
                 for (var j = 0; j < currentWord.length; j++) { //Begins a loop that will write the correct guess into the display string
                     if (currentWord.toLowerCase()[j] === guess) { //Finds the index on each loop of the correct guess
@@ -59,7 +64,6 @@ document.onkeyup = function(event) {
                 answerText.textContent = display; //Displays the game board on the page
             }
         }
-
         else {
             console.log("Not a valid input. Choose a letter."); //Logs message in console that non-letter was selected
         }
@@ -100,9 +104,7 @@ document.onkeyup = function(event) {
                     display = display.concat(currentWord.charAt(i)); //Otherwise keeps the non-letter character in place
                 }
             }
-    
         answerText.textContent = display; //Displays the game board on the page
-        
         }
     }
 }
