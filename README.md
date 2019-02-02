@@ -1,5 +1,5 @@
 # Word-Guess-Game
-A word guessing (or hangman-type) game created with Vanilla JavaScript, HTML5, and CSS3.
+A word guessing (or hangman-stlye) game created with Vanilla JavaScript, HTML5, and CSS3.
 
 ## Developed by: Sarah Kinneer
 ## November/December, 2018
@@ -7,7 +7,7 @@ A word guessing (or hangman-type) game created with Vanilla JavaScript, HTML5, a
 ![Photo of the Word Guess Game App](assets/images/hangman.png)
 
 ## Technologies Used:
-JavaScript, jQuery, Bootstrap, Moment.js, Firebase
+Vanilla JavaScript, HTML5, CSS3, Google Fonts
 
 ## Link to Live Site:
 - [Play the Game!](https://kinneers.github.io/word-guess-game) - Head to the live site for some fun!
