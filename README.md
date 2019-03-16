@@ -6,8 +6,14 @@ A word guessing (or hangman-stlye) game created with Vanilla JavaScript, HTML5, 
 
 ![Photo of the Word Guess Game App](assets/images/hangman.png)
 
-## Technologies Used:
-Vanilla JavaScript, HTML5, CSS3, Google Fonts
+## The Problem:
+My middle school students loved playing Hangman on the whiteboard, but I was running out of dry erase markers!
+
+## The Solution:
+I created a simple Hangman-style web app game that could easily be projected to the Smartboard.
+
+## Technical Approach:
+I used Vanilla Javascript for DOM manipulation.  I chose a Christmas theme for this particular game and utilized HTML5 and CSS3 to create a stylish page.  (Special note for use in school settings: I make sure to check with parents in case there are any objections to holiday celebrations/content and encourage others to do the same.)
 
 ## Link to Live Site:
 - [Play the Game!](https://kinneers.github.io/word-guess-game) - Head to the live site for some fun!

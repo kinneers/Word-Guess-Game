@@ -17,13 +17,13 @@ var losses = 0; //Sets number of losses to begin with
 var letterCheck = /^[a-z]$/ //Regex to test for valid letter input
 
 //Begins the game setup with a keyup
-document.onkeyup = function(event) {
+document.onkeyup = function() {
     currentWord = possibleWords[Math.floor(Math.random() * possibleWords.length)]; //Chooses random word from possibleWords array
     var el = document.getElementById("start");
     el.textContent = (""); //Removes the "Press any key to start"
-    winCountText.textContent = "Wins: " + wins; //Displays number of wins
-    lossCountText.textContent = "Losses: " + losses; //Displays number of losses
-    guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
+    document.getElementById('winCountText').textContent = "Wins: " + wins; //Displays number of wins
+    document.getElementById('lossCountText').textContent = "Losses: " + losses; //Displays number of losses
+    document.getElementById('guessCountText').textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
 
     for (var i = 0; i < currentWord.length; i++) {
         displayWord.push(currentWord.charAt(i)); //pushes the currently selected word/phrase into an empty array
@@ -35,7 +35,7 @@ document.onkeyup = function(event) {
         }
     }
 
-    answerText.textContent = display; //Displays the game board on the page
+    document.getElementById('answerText').textContent = display; //Displays the game board on the page
 
     document.onkeyup = function(event) {
         guess = event.key;  //Gathers the user's chosen letter
@@ -43,15 +43,14 @@ document.onkeyup = function(event) {
 
         if (letterCheck.test(guess)) { //Checks that the guess is a letter, returns boolean
             if ((guessedLetters.indexOf(guess.toUpperCase()) > -1) && (displayWord.indexOf(guess) === -1) && (displayWord.indexOf(guess.toUpperCase()) === -1)) { //Logic: guess is already in incorrectly guessed array and is not in the display word (correct letters) array
-                console.log("You have already guessed this letter."); //This incorrect letter has been guessed
                 document.getElementById("soundLose").play(); //Plays snowball splat audio
             }
             else if ((guessedLetters.indexOf(guess.toUpperCase()) === -1) && (displayWord.indexOf(guess) === -1) && (displayWord.indexOf(guess.toUpperCase()) === -1)) { //Logic: the guess has not already been guessed and is not in the display word (correct letters) array 
                 guessedLetters.push(guess.toUpperCase()); //Adds the incorrect letter to the guessedLetters array as an uppercase letter
                 guessesLeft--; //Decrements the number of guesses
-                guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Updates the guesses left on the page
+                document.getElementById('guessCountText').textContent = "Guesses Remaining: " + guessesLeft; //Updates the guesses left on the page
                 //There might be a way to add a space into the guessedLetters array (use concat or maybe join)- but I'll try this once everthing else is working
-                guessedLettersText.textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
+                document.getElementById('guessedLettersText').textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
                 document.getElementById("soundLose").play(); //Plays snowball splat audio
             }
             else { //By process of elimination, this must be a correct letter
@@ -61,24 +60,25 @@ document.onkeyup = function(event) {
                     }
                 document.getElementById("soundWin").play(); //Plays jingle bells ringing
                 }
-                answerText.textContent = display; //Displays the game board on the page
+                document.getElementById('answerText').textContent = display; //Displays the game board on the page
             }
         }
         else {
+            // eslint-disable-next-line no-console
             console.log("Not a valid input. Choose a letter."); //Logs message in console that non-letter was selected
         }
         
         //Winner!
         if (display.indexOf("_") === -1) { //When there are no more blanks in the display the user has won
             wins++; //Increments the number of wins
-            winCountText.textContent = "Wins: " + wins; //Displays number of wins
+            document.getElementById('winCountText').textContent = "Wins: " + wins; //Displays number of wins
             document.getElementById("soundWin").play(); //Plays jingle bells ringing
         }
 
         //User Loses
         if (guessesLeft === 0) {
             losses++;
-            lossCountText.textContent = "Losses: " + losses; //Displays number of losses
+            document.getElementById('lossCountText').textContent = "Losses: " + losses; //Displays number of losses
             document.getElementById("soundLose").play(); //Plays snowball splat audio
         }
 
@@ -92,8 +92,8 @@ document.onkeyup = function(event) {
             guessesLeft = 10; //Number of available guesses at the beginning of the game
     
             currentWord = possibleWords[Math.floor(Math.random() * possibleWords.length)]; //Chooses random word from possibleWords array
-            guessCountText.textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
-            guessedLettersText.textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
+            document.getElementById('guessCountText').textContent = "Guesses Remaining: " + guessesLeft; //Displays number of guesses remaining
+            document.getElementById('guessedLettersText').textContent = "Incorrect Guesses: " + guessedLetters; //Updates the guessed letters shown on the page
 
             for (var i = 0; i < currentWord.length; i++) {
                 displayWord.push(currentWord.charAt(i)); //pushes the currently selected word/phrase into an empty array
@@ -104,7 +104,7 @@ document.onkeyup = function(event) {
                     display = display.concat(currentWord.charAt(i)); //Otherwise keeps the non-letter character in place
                 }
             }
-        answerText.textContent = display; //Displays the game board on the page
+            document.getElementById('answerText').textContent = display; //Displays the game board on the page
         }
     }
 }
